@@ -7,6 +7,7 @@
  */
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 ///\brief Status of Cell
 typedef enum{HIDDEN, FLAG, KNOWN} Status;
@@ -28,6 +29,11 @@ typedef struct{
 ///Board functions
 Board *new_board(int, int, int);
 void free_board(Board *);
+
+//Cells functions
+bool exists(Board *, int, int);
+void get_neighbors(int, int, int *, int *);
+int nb_neighbors_status(Board *, int, int, Status);
 
 #endif
 

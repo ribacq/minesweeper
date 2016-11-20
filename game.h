@@ -2,7 +2,6 @@
 #define GAME_H_INCLUDED
 
 #include <stdlib.h>
-#include <time.h>
 #include "data_struct.h"
 
 /**

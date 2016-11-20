@@ -59,7 +59,15 @@ void ui_clear(UI *ui){
 
 ///\brief Simply waits for key press
 void ui_pause(UI *ui){
-	wgetch(ui->main_win);
+	int ch = wgetch(ui->main_win);
+	if((ch == CTRLS_QUIT[0]) || (ch == CTRLS_QUIT[1])){
+		ui->signal = QUIT;
+	}
+	return;
+}
+
+void ui_refresh(UI *ui){
+	wrefresh(ui->main_win);
 	return;
 }
 
@@ -152,6 +160,15 @@ void disp_msg(UI *ui, Board *b, char msg[]){
 	mvwhline(ui->main_win, y, 0, ' ', COLS);
 	wattrset(ui->main_win, COLOR_PAIR(CP_FLAG) | A_BOLD);
 	mvwaddstr(ui->main_win, y, x, msg);
+	return;
+}
+
+///\brief Waits for n miliseconds
+void msleep(float n){
+	struct timespec lag;
+	lag.tv_sec = 0;
+	lag.tv_nsec = n*1e6;
+	nanosleep(&lag, NULL);
 	return;
 }
 

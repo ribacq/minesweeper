@@ -45,3 +45,31 @@ void free_board(Board *b){
 	return;
 }
 
+bool exists(Board *b, int y, int x){
+	return (y >= 0) && (y < b->h) && (x >= 0) && (x < b->w);
+}
+
+void get_neighbors(int y, int x, int yarr[8], int xarr[8]){
+	yarr[0] = y-1;	xarr[0] = x-1;
+	yarr[1] = y-1;	xarr[1] = x;
+	yarr[2] = y-1;	xarr[2] = x+1;
+	yarr[3] = y;	xarr[3] = x-1;
+	yarr[4] = y;	xarr[4] = x+1;
+	yarr[5] = y+1;	xarr[5] = x-1;
+	yarr[6] = y+1;	xarr[6] = x;
+	yarr[7] = y+1;	xarr[7] = x+1;
+	return;
+}
+
+int nb_neighbors_status(Board *b, int y, int x, Status status){
+	int ret = 0;
+	int neighs_y[8], neighs_x[8];
+	get_neighbors(y, x, neighs_y, neighs_x);
+	int i;
+	for(i=0; i<8; i++){
+		if(exists(b, neighs_y[i], neighs_x[i]) && (b->cells[neighs_y[i]][neighs_x[i]].status == status))
+			ret++;
+	}
+	return ret;
+}
+

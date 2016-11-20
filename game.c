@@ -18,7 +18,6 @@ Player *init_player(Board *b){
  */
 void gen_board(Board *b, int beg_y, int beg_x){
 	//Placing bombs
-	srand(time(NULL));
 	int b_y, b_x;
 	int i = 0;
 	while(i < b->bombs){

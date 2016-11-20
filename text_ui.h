@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 #include <ncurses.h>
 #include "game.h"
 #include "data_struct.h"
@@ -39,6 +40,7 @@ UI *ui_init();
 void ui_terminate(UI *);
 void ui_clear(UI *);
 void ui_pause(UI *);
+void ui_refresh(UI *);
 ///\}
 
 ///\brief Color pair identifiers
@@ -62,6 +64,7 @@ typedef enum{
 void print_board(UI *, Board *);
 int select_cell(UI *, Board *, Player *);
 void disp_msg(UI *, Board *, char []);
+void msleep(float);
 
 #endif
 
